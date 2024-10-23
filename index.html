@@ -1,12 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Typing Speed Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #0099ff;
+        }
+        .keyboard {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px auto;
+            width: 600px;
+        }
+        .key {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            background-color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+        .key.active {
+            background-color: #ffcc00;
+        }
+        textarea {
+            width: 80%;
+            height: 100px;
+            margin-top: 20px;
+            font-size: 20px;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Typing Speed Test</h1>
-    <p>Test your typing speed and improve your skills!</p>
+
+<h1>Welcome to Typing Speed Test</h1>
+<p>Start typing and see the keys light up!</p>
+
+<div class="keyboard">
+    <div class="key" data-key="81">Q</div>
+    <div class="key" data-key="87">W</div>
+    <div class="key" data-key="69">E</div>
+    <div class="key" data-key="82">R</div>
+    <!-- Добавь больше клавиш -->
+</div>
+
+<textarea id="inputArea" placeholder="Start typing here..."></textarea>
+
+<script>
+    const keys = document.querySelectorAll('.key');
+
+    document.addEventListener('keydown', (event) => {
+        const key = event.key.toUpperCase();
+        keys.forEach(k => {
+            if (k.innerText === key) {
+                k.classList.add('active');
+            }
+        });
+    });
+
+    document.addEventListener('keyup', (event) => {
+        keys.forEach(k => {
+            k.classList.remove('active');
+        });
+    });
+</script>
+
 </body>
 </html>
